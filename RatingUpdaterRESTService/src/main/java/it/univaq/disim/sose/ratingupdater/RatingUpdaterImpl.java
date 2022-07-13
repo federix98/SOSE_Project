@@ -24,11 +24,11 @@ public class RatingUpdaterImpl implements RatingUpdater {
 				RatingUpdaterService.getInstance().updateGlobalScore(objToAdd);
 				return UtilityMethods.buildXMLResponse("Rating inserted successfully", true);
 			}
-			return UtilityMethods.buildXMLResponse("User has already inserted the book", false);
+			return UtilityMethods.buildXMLResponse("User has already inserted the ratings for the film", false);
 		} catch (IOException | URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return UtilityMethods.buildXMLResponse("Exception durint inserting the book", false);
+			return UtilityMethods.buildXMLResponse("Exception during add ratings", false);
 		}
 		
 		
