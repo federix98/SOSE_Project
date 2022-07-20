@@ -10,7 +10,7 @@ import java.util.List;
 
 import it.univaq.disim.sose.model.Review;
 
-public class SQLiteReviewDAOImpl implements ReviewDAO{
+public class SQLiteReviewDAOImpl implements ReviewDAO {
 
 	private Connection conn = null;
 	private PreparedStatement prep = null;

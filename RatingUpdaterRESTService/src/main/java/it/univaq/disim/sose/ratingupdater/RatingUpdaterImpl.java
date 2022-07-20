@@ -3,19 +3,20 @@ package it.univaq.disim.sose.ratingupdater;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import it.univaq.disim.sose.data.RatingDataDAO_RDF;
-import it.univaq.disim.sose.data.RatingDataDAO_SQLLite;
-import it.univaq.disim.sose.model.RatingData;
-import it.univaq.disim.sose.service.RatingUpdaterService;
-import it.univaq.disim.sose.utils.UtilityMethods;
+import org.json.JSONObject;
+
+import it.univaq.disim.sose.ratingupdater.data.RatingDataDAO_SQLLite;
+import it.univaq.disim.sose.ratingupdater.model.RatingData;
+import it.univaq.disim.sose.ratingupdater.service.RatingUpdaterService;
+import it.univaq.disim.sose.ratingupdater.utils.UtilityMethods;
 
 public class RatingUpdaterImpl implements RatingUpdater {
 	
 	@Override
-	public String add_ratings(int user_id, int film_id, int film_direction_rating, int actors_rating, int global_score_rating, int dialogues_rating, int costumes_rating) {
+	public String addRatings(int userId, String filmId, int filmDirectionRating, int actorsRating, int globalScoreRating, int dialoguesRating, int costumesRating) {
 		// TODO Auto-generated method stub
 		
-		RatingData objToAdd = new RatingData(film_id, user_id, film_direction_rating, actors_rating, global_score_rating, dialogues_rating, costumes_rating);
+		RatingData objToAdd = new RatingData(filmId, userId, filmDirectionRating, actorsRating, globalScoreRating, dialoguesRating, costumesRating);
 		
 		try {
 			boolean done = RatingUpdaterService.getInstance().addRating(objToAdd);
@@ -32,6 +33,13 @@ public class RatingUpdaterImpl implements RatingUpdater {
 		}
 		
 		
+	}
+
+	@Override
+	public String getRatingAvgs(String filmId) {
+		// TODO Auto-generated method stub
+		
+		return new JSONObject(RatingUpdaterService.getInstance().getRatingAverages(filmId)).toString();
 	}
 
 }
