@@ -12,25 +12,24 @@ public interface ReviewService {
 
 	
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/getReviewsByUserID")
 	String getReviewsByUserID(@QueryParam("userID") int userID) throws SQLException;
 	
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/getReviewsByFilmID")
-	String getReviewsByFilmID(@QueryParam("filmID") int filmID) throws SQLException;
+	String getReviewsByFilmID(@QueryParam("filmID") String filmID) throws SQLException;
 	
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/getReviewByFilmIDUserID")
-	String getReviewByFilmIDUserID(@QueryParam("filmID")int filmID, @QueryParam("userID")int userID) throws SQLException;
+	String getReviewByFilmIDUserID(@QueryParam("filmID")String filmID, @QueryParam("userID")int userID) throws SQLException;
 	
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/insertReview")
-	String insertReview(@QueryParam("filmID")int filmID, @QueryParam("title") String title, @QueryParam("text") String text, @QueryParam("userID") int userID) throws SQLException;
-	
+	String insertReview(@QueryParam("filmID")String filmID, @QueryParam("title") String title, @QueryParam("text") String text, @QueryParam("userID") int userID) throws SQLException;
 	
 	
 	

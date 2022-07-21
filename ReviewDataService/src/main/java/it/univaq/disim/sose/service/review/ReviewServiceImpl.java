@@ -3,13 +3,13 @@ package it.univaq.disim.sose.service.review;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.thoughtworks.xstream.XStream;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 import it.univaq.disim.sose.model.Review;
-import it.univaq.disim.sose.model.ReviewList;
 import it.univaq.disim.sose.service.DAO.DAOFactory;
 import it.univaq.disim.sose.service.DAO.ReviewDAO;
-import it.univaq.disim.sose.utils.Utils;
 
 public class ReviewServiceImpl implements ReviewService{
 	
@@ -28,39 +28,28 @@ public class ReviewServiceImpl implements ReviewService{
 	public String getReviewsByUserID(int userID) throws SQLException {
 		ReviewDAO reviewDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getReviewDAO();
 		List<Review> reviewList = reviewDAO.getReviewsByUserID(userID);
-		XStream xstream = new XStream();
-	    xstream.alias("Reviews", List.class);
-	    System.out.println(xstream.toXML(reviewList));
-		return Utils.buildXMLResponse(xstream.toXML(reviewList));
+		JSONArray jsonArray = new JSONArray(reviewList);
+		return jsonArray.toString();
 	}
 
 	@Override
-	public String getReviewsByFilmID(int filmID) throws SQLException {
+	public String getReviewsByFilmID(String filmID) throws SQLException {
 		ReviewDAO reviewDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getReviewDAO();
 		List<Review> reviewList = reviewDAO.getReviewsByFilmID(filmID);
-		
-		ReviewList reList = new ReviewList(reviewList);
-		XStream xstream = new XStream();
-	    xstream.alias("Reviews", ReviewList.class);
-	    System.out.println(xstream.toXML(reList));
-	    
-	    System.out.println(reviewList.size());
-	   
-		return Utils.buildXMLResponse(xstream.toXML(reList));
+		JSONArray jsonArray = new JSONArray(reviewList);
+		return jsonArray.toString();
 	}
 
 	@Override
-	public String getReviewByFilmIDUserID(int filmID, int userID) throws SQLException {
+	public String getReviewByFilmIDUserID(String filmID, int userID) throws SQLException {
 		ReviewDAO reviewDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getReviewDAO();
 		Review rev = reviewDAO.getReviewByFilmIDByUserID(filmID, userID);
-		XStream xstream = new XStream();
-	    xstream.alias("Review", Review.class);
-	    System.out.println(xstream.toXML(rev));
-		return Utils.buildXMLResponse(xstream.toXML(rev));
+		JSONObject jsonObject = new JSONObject(rev);	    
+		return jsonObject.toString();
 	}
 
 	@Override
-	public String insertReview(int filmID, String title, String text, int userID) {
+	public String insertReview(String filmID, String title, String text, int userID) {
 		System.out.print("filmID: "+ filmID+ " title: "+ title+ " text: "+ text+ " userID: "+ userID);
 		boolean response = false;
 		try {
@@ -71,12 +60,19 @@ public class ReviewServiceImpl implements ReviewService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		
-
 		}
-		if(response) return Utils.buildXMLResponse("<response> inserted </response>");
-		return Utils.buildXMLResponse("<response> not inserted, there is already another one </response>");
+		if(response) {
+			JSONObject jsonObject = new JSONObject("Response", "inserted");
+			jsonObject.put("Response", "inserted");
+			return jsonObject.toString();
+			
+		}
+		JSONObject jsonObject = new JSONObject("Response", "inserted");
+		jsonObject.put("Response", "not inserted, already inserted another for this film");
+		return jsonObject.toString();
 		
 	}
+
 
 
 }

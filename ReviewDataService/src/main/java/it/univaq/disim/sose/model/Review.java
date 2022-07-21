@@ -6,13 +6,13 @@ import java.sql.SQLException;
 public class Review {
 	
 	
-	private int  filmID;
+	private String  filmID;
 	private int userID; 
 	private String title;
 	private String comment;
 
 		
-	public Review(int filmID, int userID,String title, String comment) {
+	public Review(String filmID, int userID,String title, String comment) {
 		super();
 		this.filmID = filmID;
 		this.userID = userID;
@@ -21,17 +21,17 @@ public class Review {
 	}
 	
 	public Review(ResultSet resultSet) throws SQLException {
-		this.filmID = resultSet.getInt(1);
+		this.filmID = resultSet.getString(1);
 		this.userID = resultSet.getInt(2);
 		this.title = resultSet.getString(3);
 		this.comment = resultSet.getString(4);
 	}
 
-	public int getFilmID() {
+	public String getFilmID() {
 		return filmID;
 	}
 
-	public void setFilmID(int filmID) {
+	public void setFilmID(String filmID) {
 		this.filmID = filmID;
 	}
 

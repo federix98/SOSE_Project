@@ -10,13 +10,13 @@ import java.util.List;
 
 import it.univaq.disim.sose.model.Review;
 
-public class SQLiteReviewDAOImpl implements ReviewDAO {
+public class SQLiteReviewDAOImpl implements ReviewDAO{
 
 	private Connection conn = null;
 	private PreparedStatement prep = null;
 	private ResultSet res = null;
 	
-	private final String CREATE_DATABASE_TABLE = "CREATE TABLE IF NOT EXISTS review (review_id INTEGER PRIMARY KEY AUTOINCREMENT,film_id INTEGER, title TEXT, comment TEXT, user_id INTEGER);";
+	private final String CREATE_DATABASE_TABLE = "CREATE TABLE IF NOT EXISTS review (review_id INTEGER PRIMARY KEY AUTOINCREMENT,film_id TEXT, title TEXT, comment TEXT, user_id INTEGER);";
 	private final String SELECT_REVIEWS_BY_USERID = "SELECT film_id, user_id, title, comment FROM review where user_id = ?";
 	private final String SELECT_REVIEWS_BY_FILMID = "SELECT film_id, user_id, title, comment FROM review where film_id = ?";
 	private final String SELECT_REVIEW_BY_FILMID_USERID = "SELECT film_id, user_id, title, comment FROM review where film_id = ? AND user_id = ?";
@@ -25,12 +25,12 @@ public class SQLiteReviewDAOImpl implements ReviewDAO {
 	
 	
 	@Override
-	public List<Review> getReviewsByFilmID(int filmID) throws SQLException {
+	public List<Review> getReviewsByFilmID(String filmID) throws SQLException {
 		List<Review> reviewList = null;
 		try {
 		conn = SQLiteDAOFactory.createConnection();
 		prep = (PreparedStatement) conn.prepareStatement(SELECT_REVIEWS_BY_FILMID);
-		prep.setInt(1, filmID);
+		prep.setString(1, filmID);
 		res = prep.executeQuery();
 		System.out.println(res.getFetchSize());
 		reviewList = new ArrayList<>();
@@ -87,7 +87,7 @@ public class SQLiteReviewDAOImpl implements ReviewDAO {
 		
 		
 		prep = conn.prepareStatement(INSERT_REVIEW);
-		prep.setInt(1, review.getFilmID());
+		prep.setString(1, review.getFilmID());
 		prep.setString(2, review.getTitle());
 		prep.setString(3, review.getComment());
 		prep.setInt(4, review.getUserID());
@@ -107,13 +107,13 @@ public class SQLiteReviewDAOImpl implements ReviewDAO {
 
 
 	@Override
-	public Review getReviewByFilmIDByUserID(int filmID, int userID) {
+	public Review getReviewByFilmIDByUserID(String filmID, int userID) {
 		Review rev = null;
 		
 		try {
 		conn = SQLiteDAOFactory.createConnection();
 		prep = (PreparedStatement) conn.prepareStatement(SELECT_REVIEW_BY_FILMID_USERID);
-		prep.setInt(1, filmID);
+		prep.setString(1, filmID);
 		prep.setInt(2, userID);
 		res = prep.executeQuery();
 		
