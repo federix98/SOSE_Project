@@ -8,7 +8,7 @@ public interface RatingUpdater {
 	
 	@GET
 	@Path("/addRatings")
-	@Produces({MediaType.TEXT_XML})
+	@Produces({MediaType.APPLICATION_JSON})
 	String addRatings(
 			@QueryParam("userId") int userId,
 			@QueryParam("filmId") String filmId,
@@ -20,7 +20,12 @@ public interface RatingUpdater {
 	
 	@GET
 	@Path("/getRatingAvgs")
-	@Produces({MediaType.TEXT_PLAIN})
+	@Produces({MediaType.APPLICATION_JSON})
 	String getRatingAvgs(
 			@QueryParam("filmId") String filmId);
+	
+	@GET
+	@Path("/getAllRatings")
+	@Produces({MediaType.APPLICATION_JSON})
+	String getAllRatings(@QueryParam("filmId") String filmId);
 }

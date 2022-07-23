@@ -1,5 +1,6 @@
 package it.univaq.disim.sose.ratingupdater.utils;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import it.univaq.disim.sose.ratingupdater.data.RatingUpdaterDAO;
@@ -8,7 +9,7 @@ import it.univaq.disim.sose.ratingupdater.model.RatingData;
 public class UtilityMethods {
 	
 	
-	public static boolean IntegrityCheck(RatingData ratingDataToAdd) {
+	public static boolean IntegrityCheck(RatingData ratingDataToAdd) throws SQLException {
 	    
 	    List<RatingData> existingData = RatingUpdaterDAO.getInstance().getRatingDataDAO().getAllRatingData();
 	    

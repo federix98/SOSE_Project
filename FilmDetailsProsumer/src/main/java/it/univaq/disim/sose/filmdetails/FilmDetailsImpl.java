@@ -1,17 +1,14 @@
 package it.univaq.disim.sose.filmdetails;
 
-import com.thoughtworks.xstream.XStream;
-
 import it.univaq.disim.sose.filmdetails.data.IMDBRestClient;
 import it.univaq.disim.sose.filmdetails.data.RatingDataClient;
 import it.univaq.disim.sose.filmdetails.data.ReviewDataClient;
 import it.univaq.disim.sose.model.FilmData;
-import it.univaq.disim.sose.util.*;
 
 public class FilmDetailsImpl implements FilmDetails {
 
 	@Override
-	public String getFilmDetails(String filmId) {
+	public FilmData getFilmDetails(String filmId) {
 		// TODO Auto-generated method stub
 		
 		// Chiama realmente IMDB Api
@@ -28,9 +25,9 @@ public class FilmDetailsImpl implements FilmDetails {
 		
 		filmData.setReviews(ReviewDataClient.getReviewData(filmId).getList());
 		
-		System.out.println(filmData.getReviews().size());
+		// System.out.println(filmData.getReviews().size());
 
-		return Utility.buildXMLResponse(filmData);
+		return filmData;
 	}
 
 }

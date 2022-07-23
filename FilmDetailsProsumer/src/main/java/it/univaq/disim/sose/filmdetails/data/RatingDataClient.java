@@ -18,7 +18,7 @@ public class RatingDataClient {
 	public static RatingData getRatingData(String filmId) {
 		
 		WebClient client = WebClient.create(ReviewDataServiceURL + "?filmId=" + filmId);
-		Response response = client.accept(MediaType.TEXT_PLAIN).get();
+		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 		
 		RatingData objToReturn = new RatingData(new JSONObject(response.readEntity(String.class)));
 		System.out.println(objToReturn.toString());

@@ -11,7 +11,8 @@ import it.univaq.disim.sose.ratingupdater.model.GlobalScoreData;
 
 public class GlobalScoreDAO_SQLLite implements GlobalScoreDAO{
 
-private String FileURL = "/Users/federico/Desktop/Università/COURSE - Service Oriented Software Engineering/eclipse-ws/sose-workspace/RatingUpdaterRESTService/src/main/resources/sqllite/rating_data.sql";
+	// private String FileURL = "/Users/federico/Desktop/Università/COURSE - Service Oriented Software Engineering/eclipse-ws/sose-workspace/RatingUpdaterRESTService/src/main/resources/sqllite/rating_data.sql";
+	private String FileURL = "rating_data.sql";
 	
 	private Connection connect() {
         // SQLite connection string
