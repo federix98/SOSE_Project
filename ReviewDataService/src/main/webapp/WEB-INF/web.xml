@@ -30,11 +30,6 @@
         </init-param>
 	</servlet>
 	
-	 <!--
-         http://localhost:8080/TodoRESTServiceOpenApiSwagger/rest/api-docs
-         http://localhost:8080/TodoRESTServiceOpenApiSwagger/rest/api-docs/?url=http://localhost:8080/TodoRESTServiceOpenApiSwagger/rest/openapi.json 
-         -->
-	
 	<servlet-mapping>
 		<servlet-name>CXFNonSpringJaxrsServlet</servlet-name>
 		<url-pattern>/*</url-pattern>

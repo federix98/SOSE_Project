@@ -1,12 +1,12 @@
 {
-	"resourcePackages": ["it.univaq.disim.sose.service.review"],
+	"resourcePackages": ["it.univaq.disim.sose"],
 	"prettyPrint": true,
 	"cacheTTL": 0,
 	"openAPI": {
 		"info": {
 			"version": "1.0.0",
 			"title": "The name of the API goes here!",
-			"description": "The description of the API goes here!",
+			"description": "This services allow you to insert and/or retrieve the reviews inserted by user for a film",
 			"contact": {"email": "cxf-dev@apache.org"},
 			"license": {
 				"name": "Apache 2.0",
@@ -15,8 +15,7 @@
 		},
 		"servers": [
 			{
-				"url": "http://localhost:8080/ReviewDataServiceOpenApiSwagger/rest",
-				"description": "The description of the Server goes here!"
+				"url": "http://localhost:8080/ReviewDataService/rest"
 			}
 		]
 	},

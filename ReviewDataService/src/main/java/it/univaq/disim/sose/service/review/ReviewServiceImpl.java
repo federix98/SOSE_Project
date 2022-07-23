@@ -44,8 +44,8 @@ public class ReviewServiceImpl implements ReviewService{
 	public String getReviewByFilmIDUserID(String filmID, int userID) throws SQLException {
 		ReviewDAO reviewDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getReviewDAO();
 		Review rev = reviewDAO.getReviewByFilmIDByUserID(filmID, userID);
-		JSONObject jsonObject = new JSONObject(rev);	    
-		return jsonObject.toString();
+		if(rev != null)	return new JSONObject(rev).toString();	    
+		else return "";
 	}
 
 	@Override
