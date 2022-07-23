@@ -117,7 +117,7 @@ public class SQLiteReviewDAOImpl implements ReviewDAO{
 		prep.setInt(2, userID);
 		res = prep.executeQuery();
 		
-		while(res.next()) {
+		if(res.next()) {
 			rev = new Review(res);
 		}		
 		}

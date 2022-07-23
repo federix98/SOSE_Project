@@ -20,16 +20,54 @@ public interface ReviewService {
 
 	
 	@Operation( 
-		       description = "The description of the getTodos operation goes here!",
+		       description = "Get all the reviews inserted by a User",
 				responses = {
 			       @ApiResponse(
-			          description = "The description of the Response goes here!",
+			          description = "Return all the reviews as a Json response",
 			          content = {
-			             @Content(mediaType = MediaType.TEXT_XML, 
-			                 array = @ArraySchema(schema = @Schema(implementation = Review.class))),	            		
-			             @Content(mediaType = MediaType.APPLICATION_XML,
-			                 array = @ArraySchema(schema = @Schema(implementation = Review.class))),
-			             @Content(mediaType = MediaType.APPLICATION_JSON,
+			                 @Content(mediaType = MediaType.APPLICATION_JSON,
+			                 array = @ArraySchema(schema = @Schema(implementation = Review.class)))
+			          }
+			       )
+			    }
+			 )	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/getReviewsByUserID")
+	String getReviewsByUserID(@QueryParam("userID") int userID) throws SQLException;
+	
+	
+	
+	
+	@Operation( 
+		       description = "Get all the reviews by FilmID",
+				responses = {
+			       @ApiResponse(
+			          description = "Return all the reviews as a Json response",
+			          content = {
+			                 @Content(mediaType = MediaType.APPLICATION_JSON,
+			                 array = @ArraySchema(schema = @Schema(implementation = Review.class)))
+			          }
+			       )
+			    }
+			 )
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/getReviewsByFilmID")
+	String getReviewsByFilmID(@QueryParam("filmID") String filmID) throws SQLException;
+	
+	
+	
+	
+	
+	
+	@Operation( 
+		       description = "Get Review inserted by a User for a specific film",
+				responses = {
+			       @ApiResponse(
+			          description = "Return all the reviews as a Json response",
+			          content = {
+			                 @Content(mediaType = MediaType.APPLICATION_JSON,
 			                 array = @ArraySchema(schema = @Schema(implementation = Review.class)))
 			          }
 			       )
@@ -38,19 +76,24 @@ public interface ReviewService {
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	@Path("/getReviewsByUserID")
-	String getReviewsByUserID(@QueryParam("userID") int userID) throws SQLException;
-	
-	@GET
-	@Produces({MediaType.APPLICATION_JSON})
-	@Path("/getReviewsByFilmID")
-	String getReviewsByFilmID(@QueryParam("filmID") String filmID) throws SQLException;
-	
-	@GET
-	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/getReviewByFilmIDUserID")
 	String getReviewByFilmIDUserID(@QueryParam("filmID")String filmID, @QueryParam("userID")int userID) throws SQLException;
 	
+	
+	
+	
+	
+	@Operation( 
+		       description = "Insert review by specifing some parameters",
+				responses = {
+			       @ApiResponse(
+			          description = "Return Inserted if the user has not inserted already a review for the film, otherwise return not inserted",
+			          content = {
+			                 @Content(mediaType = MediaType.APPLICATION_JSON)
+			          }
+			       )
+			    }
+			 )
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/insertReview")
