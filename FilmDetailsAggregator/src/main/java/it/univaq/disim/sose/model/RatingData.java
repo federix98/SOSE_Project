@@ -15,6 +15,10 @@ public class RatingData {
 	private int dialoguesRating;
 	private int costumerRating;
 	
+	public RatingData() {
+		super();
+	}
+	
 	
 	public RatingData(String filmId, int userId, int filmDirectionRating, int actorsRating, int globalScoreRating,
 			int dialoguesRating, int costumerRating) {
@@ -39,10 +43,6 @@ public class RatingData {
 		this.costumerRating = object.getInt("costumerRating");
 	}
 
-
-	public RatingData() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getFilmId() {
 		return filmId;

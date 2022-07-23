@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.sose.disim.univaq.it/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="FilmDetailsAggregatorImplService" targetNamespace="http://service.sose.disim.univaq.it/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.sose.disim.univaq.it/" elementFormDefault="unqualified" targetNamespace="http://service.sose.disim.univaq.it/" version="1.0">
+
+  <xs:element name="aggregateRatings" type="tns:aggregateRatings"/>
+
+  <xs:element name="aggregateRatingsResponse" type="tns:aggregateRatingsResponse"/>
+
+  <xs:complexType name="aggregateRatings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="aggregateRatingsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:ratingData"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ratingData">
+    <xs:sequence>
+      <xs:element name="actorsRating" type="xs:int"/>
+      <xs:element name="costumerRating" type="xs:int"/>
+      <xs:element name="dialoguesRating" type="xs:int"/>
+      <xs:element name="filmDirectionRating" type="xs:int"/>
+      <xs:element minOccurs="0" name="filmId" type="xs:string"/>
+      <xs:element name="globalScoreRating" type="xs:int"/>
+      <xs:element name="userId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="aggregateRatings">
+    <wsdl:part element="tns:aggregateRatings" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="aggregateRatingsResponse">
+    <wsdl:part element="tns:aggregateRatingsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="FilmDetailsAggregator">
+    <wsdl:operation name="aggregateRatings">
+      <wsdl:input message="tns:aggregateRatings" name="aggregateRatings">
+    </wsdl:input>
+      <wsdl:output message="tns:aggregateRatingsResponse" name="aggregateRatingsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FilmDetailsAggregatorImplServiceSoapBinding" type="tns:FilmDetailsAggregator">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="aggregateRatings">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="aggregateRatings">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="aggregateRatingsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FilmDetailsAggregatorImplService">
+    <wsdl:port binding="tns:FilmDetailsAggregatorImplServiceSoapBinding" name="FilmDetailsAggregatorImplPort">
+      <soap:address location="http://localhost:8080/FilmDetailsAggregator/filmdetailsaggregator"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

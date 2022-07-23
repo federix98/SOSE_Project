@@ -10,18 +10,30 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.json.JSONObject;
 
 import it.univaq.disim.sose.model.RatingData;
+import it.univaq.disim.sose.service.FilmDetailsAggregator;
+import it.univaq.disim.sose.service.FilmDetailsAggregatorImplService;
 
 public class RatingDataClient {
 
-	private static final String ReviewDataServiceURL = "http://localhost:8080/ratingUpdaterService/rest/ratingupdaterservice/getRatingAvgs";
+	// private static final String ReviewDataServiceURL = "http://localhost:8080/ratingUpdaterService/rest/ratingupdaterservice/getRatingAvgs";
 	
 	public static RatingData getRatingData(String filmId) {
 		
-		WebClient client = WebClient.create(ReviewDataServiceURL + "?filmId=" + filmId);
-		Response response = client.accept(MediaType.APPLICATION_JSON).get();
+		FilmDetailsAggregatorImplService service = new FilmDetailsAggregatorImplService();
+		FilmDetailsAggregator port = service.getFilmDetailsAggregatorImplPort();
 		
-		RatingData objToReturn = new RatingData(new JSONObject(response.readEntity(String.class)));
-		System.out.println(objToReturn.toString());
+		it.univaq.disim.sose.service.RatingData ratingAvg = port.aggregateRatings(filmId);
+		
+		RatingData objToReturn = new RatingData();
+		objToReturn.setFilmId(ratingAvg.getFilmId());
+		objToReturn.setUserId(ratingAvg.getUserId());
+		objToReturn.setActorsRating(ratingAvg.getActorsRating());
+		objToReturn.setCostumerRating(ratingAvg.getCostumerRating());
+		objToReturn.setFilmDirectionRating(ratingAvg.getFilmDirectionRating());
+		objToReturn.setGlobalScoreRating(ratingAvg.getGlobalScoreRating());
+		objToReturn.setDialoguesRating(ratingAvg.getDialoguesRating());
+		
+		
 		return objToReturn;
 		
 	}
