@@ -10,9 +10,9 @@ public interface Search {
 	@WebMethod
 	String searchFilmsByName(String a) throws ProtocolException;
 	
-	String searchFilms(String a);
+	String searchOnlyFilms(String a);
 	
-	String searchSeries(String a);
+	String searchOnlySeries(String a);
 	
 	String searchEpisodes(String a);
 

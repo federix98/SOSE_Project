@@ -2,6 +2,7 @@ package it.univaq.disim.sose.ratingupdater.service;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,13 +31,11 @@ public class RatingUpdaterService {
 		return true;
 	}
 
-	public boolean addRating(RatingData toAdd) throws IOException, URISyntaxException {
+	public boolean addRating(RatingData toAdd) throws Exception {
 		System.out.println("Adding: " + toAdd.toString());
 		
 		if (!UtilityMethods.IntegrityCheck(toAdd)) return false;
-		RatingUpdaterDAO.getInstance().getRatingDataDAO().insertRatingData(toAdd);
-		
-		return true;
+		return RatingUpdaterDAO.getInstance().getRatingDataDAO().insertRatingData(toAdd);
 	}
 	
 	public boolean updateGlobalScore(RatingData newRatingData) {
@@ -64,7 +63,7 @@ public class RatingUpdaterService {
 		
 	}
 	
-	public RatingData getRatingAverages(String filmId) {
+	public RatingData getRatingAverages(String filmId) throws Exception {
 		List<RatingData> filmRatings = RatingUpdaterDAO.getInstance().getRatingDataDAO().getAllRatingDataByFilmId(filmId);
 		
 		RatingData average = new RatingData(filmId, -1, 0, 0, 0, 0, 0);
@@ -75,6 +74,10 @@ public class RatingUpdaterService {
 		average.setCostumerRating(new Double(filmRatings.stream().mapToInt(p -> p.getCostumerRating()).average().orElse(0)).intValue());
 		return average;
 		
+	}
+	
+	public List<RatingData> getAllRatings(String filmId) throws Exception {
+		return RatingUpdaterDAO.getInstance().getRatingDataDAO().getAllRatingDataByFilmId(filmId);
 	}
 	
 }

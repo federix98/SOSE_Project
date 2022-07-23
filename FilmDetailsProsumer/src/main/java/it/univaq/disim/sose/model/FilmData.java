@@ -31,7 +31,11 @@ public class FilmData {
 	// Ranking
 	// model rating
 	private RatingData ratings;
-
+	
+	public FilmData() {
+		super();
+	}
+	
 	public String getId() {
 		return id;
 	}

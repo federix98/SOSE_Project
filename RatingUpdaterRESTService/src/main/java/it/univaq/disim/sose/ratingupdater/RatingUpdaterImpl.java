@@ -3,11 +3,12 @@ package it.univaq.disim.sose.ratingupdater;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import it.univaq.disim.sose.ratingupdater.model.RatingData;
+import it.univaq.disim.sose.ratingupdater.model.RatingOperationResponse;
 import it.univaq.disim.sose.ratingupdater.service.RatingUpdaterService;
-import it.univaq.disim.sose.ratingupdater.utils.UtilityMethods;
 
 public class RatingUpdaterImpl implements RatingUpdater {
 	
@@ -22,13 +23,13 @@ public class RatingUpdaterImpl implements RatingUpdater {
 			
 			if (done) {
 				RatingUpdaterService.getInstance().updateGlobalScore(objToAdd);
-				return UtilityMethods.buildXMLResponse("Rating inserted successfully", true);
+				return new RatingOperationResponse("Rating inserted and global score updated", true).getJSONResponse();
 			}
-			return UtilityMethods.buildXMLResponse("User has already inserted the ratings for the film", false);
-		} catch (IOException | URISyntaxException e) {
+			return new RatingOperationResponse("User has already inserted the ratings for the film", false).getJSONResponse();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return UtilityMethods.buildXMLResponse("Exception during add ratings", false);
+			return new RatingOperationResponse("Exception during add ratings", false).getJSONResponse();
 		}
 		
 		
@@ -38,7 +39,24 @@ public class RatingUpdaterImpl implements RatingUpdater {
 	public String getRatingAvgs(String filmId) {
 		// TODO Auto-generated method stub
 		
-		return new JSONObject(RatingUpdaterService.getInstance().getRatingAverages(filmId)).toString();
+		try {
+			return new JSONObject(RatingUpdaterService.getInstance().getRatingAverages(filmId)).toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new JSONObject(new RatingOperationResponse("Exeption retrieving averages", false)).toString();
+		}
+	}
+
+	@Override
+	public String getAllRatings(String filmId) {
+		try {
+			return new JSONArray(RatingUpdaterService.getInstance().getAllRatings(filmId)).toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new JSONObject(new RatingOperationResponse("Exeption retrieving all ratings", false)).toString();
+		}
 	}
 
 }

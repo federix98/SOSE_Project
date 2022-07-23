@@ -7,6 +7,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -21,22 +23,43 @@ public class ReviewDataClient {
 		
 		WebClient client = WebClient.create(ReviewDataServiceURL + "?filmID=" + filmId);
 		System.out.println("Calling: " + ReviewDataServiceURL + "?filmID=" + filmId);
-		Response response = client.accept(MediaType.APPLICATION_XML).get();
+		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 		
 		
 		//xstream.allowTypesByWildcard(new String[]{"com.baeldung.**"});
 		
-		System.out.println("Content: " + response.readEntity(String.class));
+		String content = response.readEntity(String.class);
+		System.out.println("Content: " + content);
+		
+		JSONArray responseArray = new JSONArray(content);
+		System.out.print(responseArray.toString(2));
+		
+		List<Review> reviewList = new ArrayList<Review>();
+		
+		for (int i = 0; i < responseArray.length(); i++) {
+			JSONObject reviewJSON = responseArray.getJSONObject(i);
+			reviewList.add(
+					new Review(
+							reviewJSON.getInt("filmID"), 
+							reviewJSON.getInt("userID"), 
+							reviewJSON.getString("title"), 
+							reviewJSON.getString("comment")
+							));
+		}
+		
+		/**
+		 * XML RESPONSE
+		 * 
+		 * 	XStream xstream = new XStream();
+			xstream.allowTypesByWildcard(new String[] { 
+			        "it.univaq.disim.sose.**"
+			        });
+			
+			xstream.alias("Reviews", ReviewList.class);
+		 */
 		
 		
-		XStream xstream = new XStream();
-		xstream.allowTypesByWildcard(new String[] { 
-		        "it.univaq.disim.sose.**"
-		        });
-		
-		xstream.alias("Reviews", ReviewList.class);
-		
-		ReviewList responseList = (ReviewList) (xstream.fromXML(response.readEntity(String.class)));
+		ReviewList responseList = new ReviewList(reviewList);
 		
 		// System.out.println(responseList.toString());
 		return responseList;
