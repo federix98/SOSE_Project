@@ -9,8 +9,9 @@ import java.sql.Statement;
 public class SQLiteDAOFactory extends DAOFactory {
 	
 	public static final String DRIVER = "org.sqlite.JDBC";
-	public static final String DATABASE = "jdbc:sqlite:review.db";
+	public static final String DATABASE = "jdbc:sqlite::resource:review.db";
 	
+
 	public static Connection createConnection() {
 		Connection conn = null;
 		
