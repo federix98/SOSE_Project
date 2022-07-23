@@ -19,7 +19,16 @@
       <param-name>jaxrs.address</param-name>
       <param-value>/rest</param-value>
     </init-param>
-  </servlet>
+ <init-param>
+	        <param-name>jaxrs.providers</param-name>
+	        <param-value>com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider</param-value>
+	    </init-param>
+		<init-param>
+            <param-name>jaxrs.features</param-name>
+            <param-value>org.apache.cxf.jaxrs.openapi.OpenApiFeature(
+            					  configLocation=openapi-configuration.json)</param-value>
+        </init-param>
+	</servlet>
   
   <servlet-mapping>
     <servlet-name>CXFNonSpringJaxrsServlet</servlet-name>

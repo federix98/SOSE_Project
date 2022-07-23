@@ -1,5 +1,8 @@
 package it.univaq.disim.sose.ratingupdater.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "RatingData")
 public class RatingData {
 
 	// Keys

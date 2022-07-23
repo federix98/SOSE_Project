@@ -5,8 +5,8 @@
 	"openAPI": {
 		"info": {
 			"version": "1.0.0",
-			"title": "ReviewDataService",
-			"description": "This services allow you to insert and/or retrieve the reviews inserted by user for a film",
+			"title": "RatingUpdaterRestService",
+			"description": "This services allow you to insert and/or retrieve the ratings inserted by user for a film",
 			"contact": {"email": "cxf-dev@apache.org"},
 			"license": {
 				"name": "Apache 2.0",
@@ -15,7 +15,7 @@
 		},
 		"servers": [
 			{
-				"url": "http://localhost:8080/ReviewDataService/rest"
+				"url": "http://localhost:8080/ratingUpdaterService/rest"
 			}
 		]
 	},
