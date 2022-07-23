@@ -1,11 +1,6 @@
 package it.univaq.disim.sose.model;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "Review")
 public class Review {
 	
 	
@@ -23,12 +18,8 @@ public class Review {
 		this.comment = comment;
 	}
 	
-	public Review(ResultSet resultSet) throws SQLException {
-		this.filmID = resultSet.getString(1);
-		this.userID = resultSet.getInt(2);
-		this.title = resultSet.getString(3);
-		this.comment = resultSet.getString(4);
-	}
+	public Review() {};
+	
 
 	public String getFilmID() {
 		return filmID;

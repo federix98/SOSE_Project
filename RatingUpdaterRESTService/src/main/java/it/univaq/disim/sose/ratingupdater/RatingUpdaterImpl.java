@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 
 import org.json.JSONObject;
 
-import it.univaq.disim.sose.ratingupdater.data.RatingDataDAO_SQLLite;
 import it.univaq.disim.sose.ratingupdater.model.RatingData;
 import it.univaq.disim.sose.ratingupdater.service.RatingUpdaterService;
 import it.univaq.disim.sose.ratingupdater.utils.UtilityMethods;
