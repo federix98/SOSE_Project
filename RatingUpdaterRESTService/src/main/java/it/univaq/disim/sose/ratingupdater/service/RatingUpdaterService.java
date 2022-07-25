@@ -32,7 +32,7 @@ public class RatingUpdaterService {
 	}
 
 	public boolean addRating(RatingData toAdd) throws Exception {
-		System.out.println("Adding: " + toAdd.toString());
+		UtilityMethods.consoleLog("Adding: " + toAdd.toString());
 		
 		if (!UtilityMethods.IntegrityCheck(toAdd)) return false;
 		return RatingUpdaterDAO.getInstance().getRatingDataDAO().insertRatingData(toAdd);
@@ -41,7 +41,7 @@ public class RatingUpdaterService {
 	public boolean updateGlobalScore(RatingData newRatingData) {
 		
 		GlobalScoreData score = RatingUpdaterDAO.getInstance().getGlobalScoreDAO().readGlobalScore(newRatingData.getFilmId());
-		System.out.println("score " + score);
+		UtilityMethods.consoleLog("score " + score);
 		
 		if (score == null) {
 			// Score does not exists : INSERT

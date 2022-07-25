@@ -5,6 +5,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -99,6 +101,27 @@ public interface ReviewService {
 	@Path("/insertReview")
 	String insertReview(@QueryParam("filmID")String filmID, @QueryParam("title") String title, @QueryParam("text") String text, @QueryParam("userID") int userID) throws SQLException;
 	
+	
+	@Operation( 
+		       description = "Insert review by specifing some parameters async",
+				responses = {
+			       @ApiResponse(
+			          description = "Return Inserted if the user has not inserted already a review for the film, otherwise return not inserted (async)",
+			          content = {
+			                 @Content(mediaType = MediaType.APPLICATION_JSON)
+			          }
+			       )
+			    }
+			 )
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/insertReview")
+	void insertReviewAsync(
+			@QueryParam("filmID") final String filmID, 
+			@QueryParam("title") final String title, 
+			@QueryParam("text") final String text, 
+			@QueryParam("userID") final int userID, 
+			@Suspended final AsyncResponse asyncResponse) throws Exception;
 	
 	
 }

@@ -8,6 +8,7 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.json.JSONObject;
 
 import it.univaq.disim.sose.model.Review;
+import it.univaq.disim.sose.utils.Utility;
 
 public class ReviewDataClient {
 	
@@ -16,10 +17,10 @@ public class ReviewDataClient {
 	public static String insertReviewData(Review review) {
 		// 	String insertReview(@QueryParam("filmID")String filmID, @QueryParam("title") String title, @QueryParam("text") String text, @QueryParam("userID") int userID) throws SQLException;
 
-		WebClient client = WebClient.create(ReviewDataServiceURL + "?filmID=" + review.getFilmID()+"&title=" + review.getFilmID()+"&comment=" + review.getFilmID()+ "&userID="+review.getUserID());
-		System.out.println(ReviewDataServiceURL + "?filmID=" + review.getFilmID()+"&title=" + review.getFilmID()+"&comment=" + review.getFilmID()+ "&userID="+review.getUserID());
+		WebClient client = WebClient.create(ReviewDataServiceURL + "?filmID=" + review.getFilmID()+"&title=" + review.getTitle()+"&comment=" + review.getComment()+ "&userID="+review.getUserID());
+		Utility.consoleLog(ReviewDataServiceURL + "?filmID=" + review.getFilmID()+"&title=" + review.getTitle()+"&comment=" + review.getComment()+ "&userID="+review.getUserID());
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
-		System.out.println("Content: " + response.readEntity(String.class));
+		Utility.consoleLog("Content: " + response.readEntity(String.class));
 		JSONObject jsonObject = new JSONObject(response.readEntity(String.class));
 		return jsonObject.get("Response").toString();
 		

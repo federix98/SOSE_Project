@@ -28,6 +28,7 @@
             <param-value>org.apache.cxf.jaxrs.openapi.OpenApiFeature(
             					  configLocation=openapi-configuration.json)</param-value>
         </init-param>
+        <async-supported>true</async-supported>
 	</servlet>
 	
 	<servlet-mapping>

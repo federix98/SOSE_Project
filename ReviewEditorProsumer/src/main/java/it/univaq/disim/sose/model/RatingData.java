@@ -13,6 +13,9 @@ public class RatingData {
 	private int dialoguesRating;
 	private int costumerRating;
 	
+	public RatingData() {
+		
+	}
 	
 	public RatingData(String filmId, int userId, int filmDirectionRating, int actorsRating, int globalScoreRating,
 			int dialoguesRating, int costumerRating) {

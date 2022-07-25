@@ -6,7 +6,7 @@ import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 
-public class SimpleCXFNonSpringServlet extends CXFNonSpringServlet {
+public class FilmDetailsServlet extends CXFNonSpringServlet {
 
 	private static final long serialVersionUID = -4978737275160241311L;
 

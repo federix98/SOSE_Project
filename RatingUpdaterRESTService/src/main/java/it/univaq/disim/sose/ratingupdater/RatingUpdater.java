@@ -16,6 +16,29 @@ import it.univaq.disim.sose.ratingupdater.model.RatingData;
 public interface RatingUpdater {
 
 	@Operation( 
+		       description = "Add Rating by specifing some fields asynchronously",
+				responses = {
+			       @ApiResponse(
+			          description = "Return Inserted or not if it has been already inserted a rating (asynchronously)",
+			          content = {
+			                 @Content(mediaType = MediaType.APPLICATION_JSON)
+			          }
+			       )
+			    }
+			 )	
+	@GET
+	@Path("/addRatingsAsync")
+	void addRatingsAsync(
+			@QueryParam("userId") final int userId,
+			@QueryParam("filmId") final String filmId,
+			@QueryParam("filmDirectionRating") final int filmDirectionRating,
+			@QueryParam("actorsRating") final int actorsRating,
+			@QueryParam("globalScoreRating") final int globalScoreRating,
+			@QueryParam("dialoguesRating") final int dialoguesRating,
+			@QueryParam("costumesRating") final int costumesRating,
+			@Suspended final AsyncResponse asyncResponse) throws Exception;
+	
+	@Operation( 
 		       description = "Add Rating by specifing some fields",
 				responses = {
 			       @ApiResponse(
@@ -26,18 +49,6 @@ public interface RatingUpdater {
 			       )
 			    }
 			 )	
-	@GET
-	@Path("/addRatingsAsync")
-	@Produces({MediaType.APPLICATION_JSON})
-	void addRatingsAsync(
-			@PathParam("userId") int userId,
-			@PathParam("filmId") String filmId,
-			@PathParam("filmDirectionRating") int filmDirectionRating,
-			@PathParam("actorsRating") int actorsRating,
-			@PathParam("globalScoreRating") int globalScoreRating,
-			@PathParam("dialoguesRating") int dialoguesRating,
-			@PathParam("costumesRating") int costumesRating,
-			@Suspended final AsyncResponse asyncResponse) throws Exception;
 	
 	@GET
 	@Path("/addRatings")
@@ -90,6 +101,20 @@ public interface RatingUpdater {
 	@Path("/getAllRatings")
 	@Produces({MediaType.APPLICATION_JSON})
 	String getAllRatings(@QueryParam("filmId") String filmId);
+	
+	@Operation( 
+		       description = "Get the global summary score Film",
+				responses = {
+			       @ApiResponse(
+			          description = "Return the global summarey score of a movie as a Json response",
+			          content = {
+			                 @Content(mediaType = MediaType.APPLICATION_JSON,
+			                		 array = @ArraySchema(schema = @Schema(implementation = RatingData.class))
+			                )
+			          }
+			       )
+			    }
+		      )
 	
 	@GET
 	@Path("/getGlobalScore")

@@ -3,6 +3,10 @@ package it.univaq.disim.sose.service.review;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -71,6 +75,49 @@ public class ReviewServiceImpl implements ReviewService{
 		JSONObject jsonObject = new JSONObject("Response", "inserted");
 		jsonObject.put("Response", "not inserted, already inserted another for this film");
 		return jsonObject.toString();
+		
+	}
+
+	
+	@Override
+	public void insertReviewAsync(String filmID, String title, String text, int userID, AsyncResponse asyncResponse)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
+		new Thread() {
+			public void run() {
+				Utils.consoleLog("filmID: "+ filmID+ " title: "+ title+ " text: "+ text+ " userID: "+ userID);
+				boolean DAOResponse = false;
+				try {
+					 ReviewDAO reviewDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getReviewDAO();
+					 DAOResponse = reviewDAO.inserReview(new Review(filmID,userID, title, text));
+				} catch (SQLException e) {
+
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				
+				}
+				if(DAOResponse) {
+					JSONObject jsonObject = new JSONObject("Response", "inserted");
+					
+					String message = jsonObject.toString();
+					Response response = Response.ok(message).type(MediaType.APPLICATION_JSON).build();
+					Utils.consoleLog("Responding on background thread");
+					asyncResponse.resume(response);
+					
+				}
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put("Response", "not inserted, already inserted another for this film");
+				String message = jsonObject.toString();
+				Response response = Response.ok(message).type(MediaType.APPLICATION_JSON).build();
+				Utils.consoleLog("Responding on background thread");
+				asyncResponse.resume(response);
+				
+			}
+			
+		}.start();
+		
+		
 		
 	}
 

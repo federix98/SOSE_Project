@@ -7,13 +7,13 @@
   <display-name>FilmDetailsProsumer</display-name>
   
   <servlet>
-  	<display-name>SimpleCXFNonSpringServlet</display-name>
-  	<servlet-name>SimpleCXFNonSpringServlet</servlet-name>
-  	<servlet-class>it.univaq.disim.sose.filmdetails.SimpleCXFNonSpringServlet</servlet-class>
+  	<display-name>FilmDetailsServlet</display-name>
+  	<servlet-name>FilmDetailsServlet</servlet-name>
+  	<servlet-class>it.univaq.disim.sose.filmdetails.FilmDetailsServlet</servlet-class>
   </servlet>
    
   <servlet-mapping>
-  	<servlet-name>SimpleCXFNonSpringServlet</servlet-name>
+  	<servlet-name>FilmDetailsServlet</servlet-name>
   	<url-pattern>/*</url-pattern>
   </servlet-mapping>
   

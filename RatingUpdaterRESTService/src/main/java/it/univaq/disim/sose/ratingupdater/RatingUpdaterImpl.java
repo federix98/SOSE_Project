@@ -85,30 +85,30 @@ public class RatingUpdaterImpl implements RatingUpdater {
 			public void run() {
 				try {
 					RatingData objToAdd = new RatingData(filmId, userId, filmDirectionRating, actorsRating, globalScoreRating, dialoguesRating, costumesRating);
-					
+					UtilityMethods.consoleLog(objToAdd.toString());
 					boolean done = RatingUpdaterService.getInstance().addRating(objToAdd);
 					
 					if (done) {
 						RatingUpdaterService.getInstance().updateGlobalScore(objToAdd);
 						String message = new RatingOperationResponse("Rating inserted and global score updated", true).getJSONResponse();
 						Response response = Response.ok(message).type(MediaType.APPLICATION_JSON).build();
-						UtilityMethods.consoleLog("Responding on background thread");
+						UtilityMethods.consoleLog("Responding on background thread OK");
 						asyncResponse.resume(response);
 					}
 					String message = new RatingOperationResponse("User has already inserted the ratings for the film", false).getJSONResponse();
 					Response response = Response.ok(message).type(MediaType.APPLICATION_JSON).build();
-					UtilityMethods.consoleLog("Responding on background thread");
+					UtilityMethods.consoleLog("Responding on background thread NOT INSERTED");
 					asyncResponse.resume(response);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					String message = new RatingOperationResponse("Exception during add ratings", false).getJSONResponse();
 					Response response = Response.ok(message).type(MediaType.APPLICATION_JSON).build();
-					UtilityMethods.consoleLog("Responding on background thread");
+					UtilityMethods.consoleLog("Responding on background thread NOT INSERTED, EXCEPTION");
 					asyncResponse.resume(response);
 				}
 			}
-		};
+		}.start();
 		
 	}
 
