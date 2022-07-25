@@ -38,7 +38,7 @@ public class ReviewEditorProsumerImpl implements ReviewEditorProsumer {
 	    //if(!RatingDataClient.insertRatings(ratingData).equals("Rating inserted successfully")) return "you cannot add more than one rating for film";
 	    
 	    try {
-	    	if(!ClientAsync.insertRatings(ratingData, review).equals("Review and Rating async inserted successfully")) return "you cannot add more than one rating for film";
+	    	if(!ClientAsync.insertRatings(ratingData, review).equals("Review and Rating async inserted successfully")) return "you cannot add more than one review and ratings for film";
 	    	return "Review inserted";
 	    } catch (Exception ex) {
 	    	ex.printStackTrace();

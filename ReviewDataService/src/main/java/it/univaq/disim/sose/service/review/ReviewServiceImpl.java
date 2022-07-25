@@ -83,6 +83,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public void insertReviewAsync(String filmID, String title, String text, int userID, AsyncResponse asyncResponse)
 			throws Exception {
 		// TODO Auto-generated method stub
+		Utils.consoleLog("filmID: "+ filmID+ " title: "+ title+ " text: "+ text+ " userID: "+ userID);
 		
 		new Thread() {
 			public void run() {

@@ -115,7 +115,7 @@ public interface ReviewService {
 			 )
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	@Path("/insertReview")
+	@Path("/insertReviewAsync")
 	void insertReviewAsync(
 			@QueryParam("filmID") final String filmID, 
 			@QueryParam("title") final String title, 

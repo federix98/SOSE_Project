@@ -45,7 +45,7 @@ public class ClientAsync {
 		URL ReviewAsyncURL = new URL(ReviewDataServiceAsyncURL 
 				+ "?filmID=" + review.getFilmID() 
 				+ "&title=" + URLEncoder.encode(review.getTitle())
-				+ "&comment=" + URLEncoder.encode(review.getComment()) 
+				+ "&text=" + URLEncoder.encode(review.getComment()) 
 				+ "&userID="+review.getUserID());
 		
 		Utility.consoleLog("Calling " + RatingAsyncURL + " " + ReviewAsyncURL);
@@ -61,8 +61,23 @@ public class ClientAsync {
 		while (!futureResponseRating.isDone() || !futureResponseReview.isDone()) {
 			// Doing something
 			Thread.sleep(1000);
-			Utility.consoleLog("Waiting for async completion");
+			Utility.consoleLog("Waiting for async completion [futureResponseRating " + futureResponseRating.isDone() + ", futureResponseReview " + futureResponseReview.isDone() + "]");
 		}
+		
+		Response reviewResponse = futureResponseReview.get();
+		Response ratingResponse = futureResponseRating.get();
+		
+		Utility.consoleLog("Review Response Async: " + reviewResponse.readEntity(String.class));
+		Utility.consoleLog("Rating Response Async: " + ratingResponse.readEntity(String.class));
+		
+		if (reviewResponse.readEntity(String.class).contains("not")) {
+			return "ERROR";
+		}
+		
+		if (!(new JSONObject(ratingResponse.readEntity(String.class)).getBoolean("Outcome"))) {
+			return "ERROR";
+		}
+		
 		
 		Utility.consoleLog("Received response from service - Inserted");
 		
