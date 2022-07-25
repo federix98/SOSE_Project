@@ -1,19 +1,23 @@
 package it.univaq.disim.sose.search;
 
-import java.net.ProtocolException;
+import java.io.IOException;
+import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import it.univaq.disim.sose.search.model.Result;
+
+
 @WebService
 public interface Search {
 	@WebMethod
-	String searchFilmsByName(String a) throws ProtocolException;
+	List<Result> searchFilmsByName(String a) throws IOException;
 	
-	String searchOnlyFilms(String a);
+	List<Result> searchOnlyFilms(String a);
 	
-	String searchOnlySeries(String a);
+	List<Result> searchOnlySeries(String a);
 	
-	String searchEpisodes(String a);
+	List<Result> searchEpisodes(String a);
 
 }
