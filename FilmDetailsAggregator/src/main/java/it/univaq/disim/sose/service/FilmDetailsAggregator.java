@@ -5,12 +5,12 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import it.univaq.disim.sose.model.RatingData;
+import it.univaq.disim.sose.model.AggregatedRatingData;
 
 @WebService
 public interface FilmDetailsAggregator {
 
 	@WebMethod
-	RatingData aggregateRatings(String filmId);
+	AggregatedRatingData aggregateRatings(String filmId);
 	
 }

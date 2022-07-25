@@ -30,7 +30,7 @@ public class FilmData {
 	
 	// Ranking
 	// model rating
-	private RatingData ratings;
+	private AggregatedRatingData ratings;
 	
 	public FilmData() {
 		super();
@@ -166,11 +166,11 @@ public class FilmData {
 
 	
 
-	public RatingData getRatings() {
+	public AggregatedRatingData getRatings() {
 		return ratings;
 	}
 
-	public void setRatings(RatingData ratings) {
+	public void setRatings(AggregatedRatingData ratings) {
 		this.ratings = ratings;
 	}
 

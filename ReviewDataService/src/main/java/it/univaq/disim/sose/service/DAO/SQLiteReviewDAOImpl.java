@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.univaq.disim.sose.model.Review;
+import it.univaq.disim.sose.utils.Utils;
 
 public class SQLiteReviewDAOImpl implements ReviewDAO{
 
@@ -32,7 +33,7 @@ public class SQLiteReviewDAOImpl implements ReviewDAO{
 		prep = (PreparedStatement) conn.prepareStatement(SELECT_REVIEWS_BY_FILMID);
 		prep.setString(1, filmID);
 		res = prep.executeQuery();
-		System.out.println(res.getFetchSize());
+		Utils.consoleLog(String.valueOf(res.getFetchSize()));
 		reviewList = new ArrayList<>();
 		while(res.next()) {
 			//System.out.println("id: "+res.getInt("film_id"));
@@ -61,7 +62,7 @@ public class SQLiteReviewDAOImpl implements ReviewDAO{
 			res = prep.executeQuery();
 			while(res.next()) {
 				Review rev = new Review(res);
-				System.out.println(rev.toString());
+				Utils.consoleLog(rev.toString());
 				reviewList.add(new Review(res));
 			}
 			
@@ -82,7 +83,7 @@ public class SQLiteReviewDAOImpl implements ReviewDAO{
 		if(getReviewByFilmIDByUserID(review.getFilmID(), review.getUserID())!= null) return false;
 
 		conn = SQLiteDAOFactory.createConnection();
-		System.out.println(review.toString());
+		Utils.consoleLog(review.toString());
 		
 		
 		
@@ -140,7 +141,7 @@ public class SQLiteReviewDAOImpl implements ReviewDAO{
 		
         Statement statement = conn.createStatement();
         statement.executeUpdate(CREATE_DATABASE_TABLE);
-        System.out.print("database create");
+        Utils.consoleLog("database create");
 
 		}
 		catch (SQLException e) {

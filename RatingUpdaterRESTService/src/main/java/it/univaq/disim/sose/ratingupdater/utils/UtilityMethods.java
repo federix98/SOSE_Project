@@ -1,6 +1,8 @@
 package it.univaq.disim.sose.ratingupdater.utils;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import it.univaq.disim.sose.ratingupdater.data.RatingUpdaterDAO;
@@ -31,11 +33,19 @@ public class UtilityMethods {
 	
 	public static double calculateSummaryScore(RatingData rates) {
 		double[] weights = { 0.2, 0.2, 0.3, 0.2, 0.1 };
-		return rates.getFilmDirectionRating() * weights[0] 
+		double score = rates.getFilmDirectionRating() * weights[0] 
 				+ rates.getActorsRating() * weights[1]
 				+ rates.getGlobalScoreRating() * weights[2]
 				+ rates.getDialoguesRating() * weights[3]
 				+ rates.getCostumerRating() * weights[4];
+		consoleLog("calculated global score: " + score);
+		return score;
+	}
+	
+	public static void consoleLog(String message) {
+		String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
+		String whoAmI = "RatingUpdaterService";
+		System.out.println(whoAmI + " [" + now + "] " + message);
 	}
 	
 }

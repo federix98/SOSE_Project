@@ -3,18 +3,23 @@ package it.univaq.disim.sose.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "Review")
 public class Review {
 	
 	
-	private int  filmID;
+	private String  filmID;
 	private int userID; 
 	private String title;
 	private String comment;
+	
+	public Review() {
+		
+	}
 
 		
-	public Review(int filmID, int userID,String title, String comment) {
+	public Review(String filmID, int userID,String title, String comment) {
 		super();
 		this.filmID = filmID;
 		this.userID = userID;
@@ -23,17 +28,17 @@ public class Review {
 	}
 	
 	public Review(ResultSet resultSet) throws SQLException {
-		this.filmID = resultSet.getInt(1);
+		this.filmID = resultSet.getString(1);
 		this.userID = resultSet.getInt(2);
 		this.title = resultSet.getString(3);
 		this.comment = resultSet.getString(4);
 	}
 
-	public int getFilmID() {
+	public String getFilmID() {
 		return filmID;
 	}
 
-	public void setFilmID(int filmID) {
+	public void setFilmID(String filmID) {
 		this.filmID = filmID;
 	}
 
@@ -65,7 +70,4 @@ public class Review {
 	public String toString() {
 		return "Review [filmID=" + filmID + ", userID=" + userID + ", title=" + title + ", comment=" + comment + "]";
 	}
-
-	
-	
 }

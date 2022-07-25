@@ -7,6 +7,7 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.json.JSONObject;
 
 import it.univaq.disim.sose.model.FilmData;
+import it.univaq.disim.sose.util.Utility;
 
 public class IMDBRestClient {
 
@@ -396,7 +397,7 @@ public class IMDBRestClient {
 		toReturn.setCountries(jsonObject.getString("countries"));
 		toReturn.setLanguages(jsonObject.getString("languages"));
 		
-		System.out.println("Returned Object from id " + filmId +  " ==> " + toReturn.toString());
+		Utility.consoleLog("Returned Object from id " + filmId +  " ==> " + toReturn.toString());
 		
 		return toReturn;
 	}
@@ -425,7 +426,7 @@ public class IMDBRestClient {
 		toReturn.setCountries(jsonObject.getString("countries"));
 		toReturn.setLanguages(jsonObject.getString("languages"));
 		
-		System.out.println(toReturn.toString());
+		Utility.consoleLog(toReturn.toString());
 		
 		return toReturn;
 		

@@ -80,4 +80,7 @@ public class RatingUpdaterService {
 		return RatingUpdaterDAO.getInstance().getRatingDataDAO().getAllRatingDataByFilmId(filmId);
 	}
 	
+	public GlobalScoreData getGlobalScore(String filmId) throws Exception {
+		return RatingUpdaterDAO.getInstance().getGlobalScoreDAO().readGlobalScore(filmId);
+	}
 }

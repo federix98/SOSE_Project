@@ -14,6 +14,7 @@ import com.thoughtworks.xstream.XStream;
 
 import it.univaq.disim.sose.model.Review;
 import it.univaq.disim.sose.model.ReviewList;
+import it.univaq.disim.sose.util.Utility;
 
 public class ReviewDataClient {
 	
@@ -22,17 +23,17 @@ public class ReviewDataClient {
 	public static ReviewList getReviewData(String filmId) {
 		
 		WebClient client = WebClient.create(ReviewDataServiceURL + "?filmID=" + filmId);
-		System.out.println("Calling: " + ReviewDataServiceURL + "?filmID=" + filmId);
+		Utility.consoleLog("Calling: " + ReviewDataServiceURL + "?filmID=" + filmId);
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 		
 		
 		//xstream.allowTypesByWildcard(new String[]{"com.baeldung.**"});
 		
 		String content = response.readEntity(String.class);
-		System.out.println("Content: " + content);
+		Utility.consoleLog("Content: " + content);
 		
 		JSONArray responseArray = new JSONArray(content);
-		System.out.print(responseArray.toString(2));
+		Utility.consoleLog(responseArray.toString(2));
 		
 		List<Review> reviewList = new ArrayList<Review>();
 		
@@ -40,7 +41,7 @@ public class ReviewDataClient {
 			JSONObject reviewJSON = responseArray.getJSONObject(i);
 			reviewList.add(
 					new Review(
-							reviewJSON.getInt("filmID"), 
+							reviewJSON.getString("filmID"), 
 							reviewJSON.getInt("userID"), 
 							reviewJSON.getString("title"), 
 							reviewJSON.getString("comment")

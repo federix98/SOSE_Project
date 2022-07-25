@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import it.univaq.disim.sose.model.Review;
 import it.univaq.disim.sose.service.DAO.DAOFactory;
 import it.univaq.disim.sose.service.DAO.ReviewDAO;
+import it.univaq.disim.sose.utils.Utils;
 
 public class ReviewServiceImpl implements ReviewService{
 	
@@ -17,7 +18,7 @@ public class ReviewServiceImpl implements ReviewService{
 		ReviewDAO reviewDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getReviewDAO();
 		try {
 			reviewDAO.createTableDB();
-			System.out.println("database created");
+			Utils.consoleLog("database created");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,7 +51,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public String insertReview(String filmID, String title, String text, int userID) {
-		System.out.print("filmID: "+ filmID+ " title: "+ title+ " text: "+ text+ " userID: "+ userID);
+		Utils.consoleLog("filmID: "+ filmID+ " title: "+ title+ " text: "+ text+ " userID: "+ userID);
 		boolean response = false;
 		try {
 			 ReviewDAO reviewDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getReviewDAO();

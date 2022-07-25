@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import it.univaq.disim.sose.ratingupdater.model.GlobalScoreData;
+import it.univaq.disim.sose.ratingupdater.utils.UtilityMethods;
 
 public class GlobalScoreDAO_SQLLite implements GlobalScoreDAO{
 
@@ -27,18 +28,18 @@ public class GlobalScoreDAO_SQLLite implements GlobalScoreDAO{
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            UtilityMethods.consoleLog(e.getMessage());
         }
         return conn;
     }
 	
 	private void createDB() throws SQLException {
 		String sql = "CREATE TABLE IF NOT EXISTS gloabl_score_data (film_id VARCHAR(255), global_score REAL, number_of_ratings INT)";
-		System.out.println("CREATING GlobalScore");
+		UtilityMethods.consoleLog("CREATING GlobalScore");
 		Statement statement = connect().createStatement();
 		Connection connection = connect();
 		if (connection == null) {
-			System.out.println("Error creating connection");
+			UtilityMethods.consoleLog("Error creating connection");
 		}
 		else {
 			statement.execute(sql);
@@ -58,12 +59,12 @@ public class GlobalScoreDAO_SQLLite implements GlobalScoreDAO{
 					 ) {
 				
 				pstmt.setString(1, filmId);
-				System.out.println(pstmt.toString());
+				UtilityMethods.consoleLog(pstmt.toString());
 				
 				ResultSet rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
-					System.out.println("Reading global score from film " + filmId + ", : " + rs.getDouble(2));
+					UtilityMethods.consoleLog("Reading global score from film " + filmId + ", : " + rs.getDouble(2));
 					return new GlobalScoreData(rs.getString(1), rs.getDouble(2), rs.getInt(3));
 				}
 				
@@ -89,7 +90,7 @@ public class GlobalScoreDAO_SQLLite implements GlobalScoreDAO{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("UPDATE SCORE");
+		UtilityMethods.consoleLog("UPDATE SCORE");
 		String sql = "";
 		if (readGlobalScore(newValue.getFilmId()) != null) {
 			// TODO Auto-generated method stub
@@ -106,11 +107,11 @@ public class GlobalScoreDAO_SQLLite implements GlobalScoreDAO{
 	            pstmt.executeUpdate();
 	            return true;
 	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
+	        	UtilityMethods.consoleLog(e.getMessage());
 	        }
 		}
 		else {
-			System.out.println("INSERTING SCORE");
+			UtilityMethods.consoleLog("INSERTING SCORE");
 			sql = "INSERT INTO gloabl_score_data(film_id,global_score,number_of_ratings) VALUES(?,?,?)";
 			
 			try (Connection conn = this.connect();
@@ -119,12 +120,12 @@ public class GlobalScoreDAO_SQLLite implements GlobalScoreDAO{
 	            // set the corresponding param
 	            pstmt.setString(1, newValue.getFilmId());
 	            pstmt.setDouble(2, newValue.getGlobalScore());
-	            pstmt.setInt(2, newValue.getNumberOfRatings());
+	            pstmt.setInt(3, newValue.getNumberOfRatings());
 	            // update 
 	            pstmt.executeUpdate();
 	            return true;
 	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
+	        	UtilityMethods.consoleLog(e.getMessage());
 	        }
 		}
 		

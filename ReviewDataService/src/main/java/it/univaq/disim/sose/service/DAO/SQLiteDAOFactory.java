@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import it.univaq.disim.sose.utils.Utils;
+
 public class SQLiteDAOFactory extends DAOFactory {
 	
 	public static final String DRIVER = "org.sqlite.JDBC";
@@ -17,7 +19,7 @@ public class SQLiteDAOFactory extends DAOFactory {
 		
 		try {
 			Class.forName(DRIVER);
-			System.out.println(DATABASE);
+			Utils.consoleLog(DATABASE);
 			conn = DriverManager.getConnection(DATABASE);
 			
 			//System.out.println("Connected to database");
@@ -49,10 +51,10 @@ public class SQLiteDAOFactory extends DAOFactory {
 		try {
 			Class.forName(DRIVER);
 			conn = DriverManager.getConnection(DATABASE);;
-			System.out.println("Connected to database ");
+			Utils.consoleLog("Connected to database ");
 			Statement statement = conn.createStatement();
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS review (review_id INTEGER PRIMARY KEY AUTOINCREMENT,film_id INTEGER, title TEXT, comment TEXT, user_id INTEGER");
-			System.out.println("Database created ");
+			Utils.consoleLog("Database created ");
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}

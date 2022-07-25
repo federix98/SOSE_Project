@@ -14,18 +14,20 @@
 
   <xs:complexType name="aggregateRatingsResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:ratingData"/>
+      <xs:element minOccurs="0" name="return" type="tns:aggregatedRatingData"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="ratingData">
+  <xs:complexType name="aggregatedRatingData">
     <xs:sequence>
       <xs:element name="actorsRating" type="xs:int"/>
       <xs:element name="costumerRating" type="xs:int"/>
       <xs:element name="dialoguesRating" type="xs:int"/>
       <xs:element name="filmDirectionRating" type="xs:int"/>
       <xs:element minOccurs="0" name="filmId" type="xs:string"/>
+      <xs:element name="globalScore" type="xs:double"/>
       <xs:element name="globalScoreRating" type="xs:int"/>
+      <xs:element name="numberOfRatings" type="xs:int"/>
       <xs:element name="userId" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>

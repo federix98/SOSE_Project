@@ -1,10 +1,25 @@
 package it.univaq.disim.sose.ratingupdater;
 
 import javax.ws.rs.*;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.*;
 
 @Path("/ratingupdaterservice")
 public interface RatingUpdater {
+	
+	@GET
+	@Path("/addRatingsAsync")
+	@Produces({MediaType.APPLICATION_JSON})
+	void addRatingsAsync(
+			@PathParam("userId") int userId,
+			@PathParam("filmId") String filmId,
+			@PathParam("filmDirectionRating") int filmDirectionRating,
+			@PathParam("actorsRating") int actorsRating,
+			@PathParam("globalScoreRating") int globalScoreRating,
+			@PathParam("dialoguesRating") int dialoguesRating,
+			@PathParam("costumesRating") int costumesRating,
+			@Suspended final AsyncResponse asyncResponse) throws Exception;
 	
 	@GET
 	@Path("/addRatings")
@@ -28,4 +43,9 @@ public interface RatingUpdater {
 	@Path("/getAllRatings")
 	@Produces({MediaType.APPLICATION_JSON})
 	String getAllRatings(@QueryParam("filmId") String filmId);
+	
+	@GET
+	@Path("/getGlobalScore")
+	@Produces({MediaType.APPLICATION_JSON})
+	String getGlobalScore(@QueryParam("filmId") String filmId);
 }
