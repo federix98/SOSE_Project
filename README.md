@@ -15,7 +15,7 @@ In order to run this project, be sure that you have installed:
 - Nginx
 
 
-### Installations
+### Installation
 
 To install the application follow these steps:
 1. Get a free API Key at [https://imdb-api.com/](https://imdb-api.com/)
