@@ -1,4 +1,5 @@
-# Service Oriented Software Engineering - About the project
+# SOSE Project
+## About the project
 This repo is for the *Service Oriented Software Engineering* course project. 
 
 University of L'Aquila.
