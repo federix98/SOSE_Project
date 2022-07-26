@@ -45,12 +45,15 @@ public class FilmDetailsImpl implements FilmDetails {
 		while (!response.isDone()) {
 			Utility.consoleLog("Still waiting for aggregateRatingsAsync");
 			
+			
+			
 			if (!othersDone) {
 				filmData = IMDBRestClient.getFilmDataSimulated(filmId);
 				filmData.setReviews(ReviewDataClient.getReviewData(filmId).getList());
 				othersDone = true;
 			}
 			
+			Thread.sleep(1000);
 		}
 		
 		Utility.consoleLog("aggregateRatingsAsync replied");
