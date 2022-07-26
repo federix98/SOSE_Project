@@ -31,6 +31,18 @@ public class AggregatedRatingData {
 		this.globalScore = globalScore;
 		this.numberOfRatings = numberOfRatings;
 	}
+	
+	public AggregatedRatingData(it.univaq.disim.sose.service.AggregatedRatingData obj) {
+		this.filmId = obj.getFilmId();
+		this.userId = obj.getUserId();
+		this.filmDirectionRating = obj.getFilmDirectionRating();
+		this.actorsRating = obj.getActorsRating();
+		this.globalScoreRating = obj.getGlobalScoreRating();
+		this.dialoguesRating = obj.getDialoguesRating();
+		this.costumerRating = obj.getCostumerRating();
+		this.globalScore = obj.getGlobalScore();
+		this.numberOfRatings = obj.getNumberOfRatings();
+	}
 
 	public AggregatedRatingData() {
 		super();

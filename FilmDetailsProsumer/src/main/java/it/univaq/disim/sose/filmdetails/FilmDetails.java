@@ -9,6 +9,6 @@ import it.univaq.disim.sose.model.FilmData;
 public interface FilmDetails {
 	
 	@WebMethod
-	FilmData getFilmDetails(String filmId);
+	FilmData getFilmDetails(String filmId) throws Exception;
 	
 }

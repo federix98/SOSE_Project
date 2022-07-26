@@ -51,6 +51,4 @@ public class ReviewEditorProsumerImpl implements ReviewEditorProsumer {
 		
 	}
 
-
-
 }

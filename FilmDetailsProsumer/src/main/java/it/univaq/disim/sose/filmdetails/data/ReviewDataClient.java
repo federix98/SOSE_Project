@@ -39,6 +39,7 @@ public class ReviewDataClient {
 		
 		for (int i = 0; i < responseArray.length(); i++) {
 			JSONObject reviewJSON = responseArray.getJSONObject(i);
+			try {
 			reviewList.add(
 					new Review(
 							reviewJSON.getString("filmID"), 
@@ -46,6 +47,11 @@ public class ReviewDataClient {
 							reviewJSON.getString("title"), 
 							reviewJSON.getString("comment")
 							));
+			}
+			catch (Exception ex) {
+				ex.printStackTrace();
+				Utility.consoleLog("Review not added " + reviewJSON.toString());
+			}
 		}
 		
 		/**

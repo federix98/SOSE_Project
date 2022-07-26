@@ -70,6 +70,9 @@
 							<wsdlOptions>
 								<wsdlOption>
 									<wsdl>${basedir}/src/main/resources/filmdetailsaggregator.wsdl.xml</wsdl>
+									<bindingFiles>
+										<bindingFile>${basedir}/src/main/resources/async_binding.xml</bindingFile>
+									</bindingFiles>
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>

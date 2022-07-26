@@ -10,6 +10,7 @@
   	<display-name>SimpleCXFNonSpringServlet</display-name>
   	<servlet-name>SimpleCXFNonSpringServlet</servlet-name>
   	<servlet-class>it.univaq.disim.sose.service.SimpleCXFNonSpringServlet</servlet-class>
+  	<async-supported>true</async-supported>
   </servlet>
    
   <servlet-mapping>
