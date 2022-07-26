@@ -4,7 +4,6 @@ This repo is for the *Service Oriented Software Engineering* course project.
 University of L'Aquila.
 
 ## Getting Started
----
 This application consists of a set of services and microservices that have to be started inside a server to run the whole system.
 
 ### Prerequisites
