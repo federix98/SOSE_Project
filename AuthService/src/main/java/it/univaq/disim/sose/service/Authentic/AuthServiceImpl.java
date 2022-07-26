@@ -3,7 +3,6 @@ package it.univaq.disim.sose.service.Authentic;
 import java.sql.SQLException;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.json.JSONObject;
 
 import it.univaq.disim.sose.service.DAO.DAOFactory;
 import it.univaq.disim.sose.service.DAO.UserDAO;
@@ -26,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
 		UserDAO userDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getUserDAO();
 		int userID = userDAO.login(username, password);
 		System.out.println("userID: "+userID);
-		if(userID == 0) return new JSONObject("The user not exists").toString();
+		if(userID == 0) return "The user not exists";
 		String generatedString = RandomStringUtils.randomAlphanumeric(10);
 		boolean res = userDAO.insertToken(userID, generatedString);
 		if(res) return generatedString;

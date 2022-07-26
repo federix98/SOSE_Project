@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -20,7 +21,7 @@ public interface AuthService {
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/Login")
-	String login(@QueryParam("username") String username, @QueryParam("password") String password ) throws SQLException;
+	String login(@PathParam("username") String username, @PathParam("password") String password ) throws SQLException;
 	
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
