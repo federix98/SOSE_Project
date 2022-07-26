@@ -20,18 +20,22 @@ In order to run this project, be sure that you have installed:
 To install the application follow these steps:
 1. Get a free API Key at [https://imdb-api.com/](https://imdb-api.com/)
 2. Clone the repo
+   
    ```sh
    git clone https://github.com/federix98/SOSE_Project.git
    ```
 3. Enter your API in `FilmSearchProsumer/src/main/java/it/univaq/disim/sose/search/SearchImpl.java`
-   ```js
+   
+   ```java
    private String API_KEY = "ENTER YOUR API";
    ```
+
    and in `FilmDetailsProsumer/src/main/java/it/univaq/disim/sose/filmdetails/data/IMDBRestClient.java`
-   ```js
+
+   ```java
    private static final String APIKey = "k_dm7b3skf";
    ```
-5. Open Eclipse IDE, create a new Tomcat instance and run all the services:
+4. Open Eclipse IDE, create a new Tomcat instance and run all the services:
    1. AuthService
    2. FilmDetailsProsumer
    3. FilmDetailsAggregator
@@ -39,7 +43,7 @@ To install the application follow these steps:
    5. RatingUpdaterRESTService
    6. ReviewDataService
    7. ReviewEditorProsumer
-6. Install Android application
+5. Install Android application
 
 ## Usage
 
