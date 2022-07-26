@@ -33,7 +33,7 @@ To install the application follow these steps:
    and in `FilmDetailsProsumer/src/main/java/it/univaq/disim/sose/filmdetails/data/IMDBRestClient.java`
 
    ```java
-   private static final String APIKey = "k_dm7b3skf";
+   private static final String APIKey = "ENTER YOUR API";
    ```
 4. Open Eclipse IDE, create a new Tomcat instance and run all the services:
    1. AuthService
