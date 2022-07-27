@@ -45,6 +45,9 @@ To install the application follow these steps:
    7. ReviewEditorProsumer
 5. Install Android application
 
+### Nginx Load Balancer
+To use Nginx load balancer, you have to follow severals steps we resumed in the <a href="https://github.com/federix98/SOSE_Project/blob/main/NGINX%20Load%20Balancer%20SOSE.pdf">NGINX Load Balancer SOSE.pdf</a> file.
+
 ## Usage
 
 Opening the android application you can search for movies and tv series and you can open it. Clicking on one result, you will be redirected thru the details page in which you'll see all the film metadata, the averages of the ratings, the summary global score and the reviews of that film.
@@ -57,12 +60,6 @@ Contributions are what make the open source community such an amazing place to l
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## Contact
 This project has been realized for educational purposes.
