@@ -44,7 +44,7 @@ public class FilmDetailsImpl implements FilmDetails {
 			
 			
 			if (!othersDone) {
-				filmData = IMDBRestClient.getFilmDataSimulated(filmId);
+				filmData = IMDBRestClient.getFilmData(filmId);
 				filmData.setReviews(ReviewDataClient.getReviewData(filmId).getList());
 				othersDone = true;
 			}
@@ -54,7 +54,14 @@ public class FilmDetailsImpl implements FilmDetails {
 		
 		Utility.consoleLog("aggregateRatingsAsync replied");
 		
-		filmData.setRatings(new AggregatedRatingData(messageAsyncHandler.getAggregateRatingsResponse().getReturn()));
+		if (messageAsyncHandler.getAggregateRatingsResponse() == null) {
+			Utility.consoleLog("No ratings for the selected film");
+		}
+		else {
+			filmData.setRatings(new AggregatedRatingData(messageAsyncHandler.getAggregateRatingsResponse().getReturn()));
+			
+		}
+		
 		
 		
 		

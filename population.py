@@ -2,7 +2,7 @@ import requests
 import random
 
 # tt0411008 : LOST
-FILM_IDS = ['tt0411008']
+FILM_IDS = ['tt0411008', 'tt0108778']
 
 def populate_reviews(n_users):
     URL = "http://localhost:8080/ReviewDataService/rest/Review/insertReview?filmID=%s&title=%s&text=%s&userID=%d"
