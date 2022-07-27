@@ -14,6 +14,9 @@ In order to run this project, be sure that you have installed:
 - Eclipse IDE for Enterprise Java Developers
 - Nginx
 
+#### Android App 
+The Android application is available in this repo:
+<a href="https://github.com/GianlucaRea/Application">Android Repository</a>
 
 ### Installation
 
