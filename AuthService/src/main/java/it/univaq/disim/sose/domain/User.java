@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 @XmlRootElement(name = "User")
 public class User {
 
