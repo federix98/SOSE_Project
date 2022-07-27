@@ -10,7 +10,6 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import it.univaq.disim.sose.model.AggregatedRatingData;
 import it.univaq.disim.sose.model.GlobalScoreData;
 import it.univaq.disim.sose.model.RatingData;
 import it.univaq.disim.sose.utils.Utility;

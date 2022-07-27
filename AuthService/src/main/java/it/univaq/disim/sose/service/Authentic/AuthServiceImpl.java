@@ -22,13 +22,15 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public String login(String username, String password)  {
+		System.out.println(username);
+		System.out.println(password);
 		UserDAO userDAO = DAOFactory.getDAOFactory(DAOFactory.SQLITE).getUserDAO();
 		int userID = userDAO.login(username, password);
 		System.out.println("userID: "+userID);
 		if(userID == 0) return "The user not exists";
 		String generatedString = RandomStringUtils.randomAlphanumeric(10);
 		boolean res = userDAO.insertToken(userID, generatedString);
-		if(res) return generatedString;
+		if(res) return generatedString + "§" + userID;
 		return null;
 	}
 

@@ -6,10 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
-import it.univaq.disim.sose.data.AuthDataClient;
-import it.univaq.disim.sose.data.RatingDataClient;
 import it.univaq.disim.sose.data.ClientAsync;
-import it.univaq.disim.sose.data.ReviewDataClient;
 import it.univaq.disim.sose.model.RatingData;
 import it.univaq.disim.sose.model.Review;
 import it.univaq.disim.sose.utils.Utility;

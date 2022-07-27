@@ -1,17 +1,13 @@
 package it.univaq.disim.sose.data;
 
-
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.concurrent.Future;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.cxf.jaxrs.client.WebClient;
 import org.json.JSONObject;
 
 import it.univaq.disim.sose.callbacks.Callback;
@@ -42,6 +38,7 @@ public class ClientAsync {
 				+ "&dialoguesRating=" + ratingData.getDialoguesRating()
 				+ "&costumesRating=" + ratingData.getCostumerRating());
 		
+		@SuppressWarnings("deprecation")
 		URL ReviewAsyncURL = new URL(ReviewDataServiceAsyncURL 
 				+ "?filmID=" + review.getFilmID() 
 				+ "&title=" + URLEncoder.encode(review.getTitle())

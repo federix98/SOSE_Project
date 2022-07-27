@@ -10,8 +10,6 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.thoughtworks.xstream.XStream;
-
 import it.univaq.disim.sose.model.Review;
 import it.univaq.disim.sose.model.ReviewList;
 import it.univaq.disim.sose.util.Utility;

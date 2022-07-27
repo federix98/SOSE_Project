@@ -2,8 +2,6 @@ package it.univaq.disim.sose.model;
 
 import java.util.List;
 
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
-
 public class FilmData {
 
 	

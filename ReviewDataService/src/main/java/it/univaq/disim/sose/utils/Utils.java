@@ -6,8 +6,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import it.univaq.disim.sose.service.DAO.SQLiteDAOFactory;
-
 public class Utils {
 	
 	

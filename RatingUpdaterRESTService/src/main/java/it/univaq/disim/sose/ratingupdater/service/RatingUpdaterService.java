@@ -1,9 +1,4 @@
 package it.univaq.disim.sose.ratingupdater.service;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import it.univaq.disim.sose.ratingupdater.data.RatingUpdaterDAO;
@@ -26,6 +21,7 @@ public class RatingUpdaterService {
 		return instance;
 	}
 	
+	@SuppressWarnings("unused")
 	private boolean checkExistingUserWithToken() {
 		// Implement Async Callback to check 
 		return true;
