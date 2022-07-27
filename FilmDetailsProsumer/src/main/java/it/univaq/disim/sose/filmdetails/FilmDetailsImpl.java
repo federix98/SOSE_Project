@@ -2,14 +2,10 @@ package it.univaq.disim.sose.filmdetails;
 
 import java.util.concurrent.Future;
 
-import javax.xml.ws.Response;
-
 import it.univaq.disim.sose.filmdetails.data.IMDBRestClient;
-import it.univaq.disim.sose.filmdetails.data.RatingDataClient;
 import it.univaq.disim.sose.filmdetails.data.ReviewDataClient;
 import it.univaq.disim.sose.model.AggregatedRatingData;
 import it.univaq.disim.sose.model.FilmData;
-import it.univaq.disim.sose.service.AggregateRatingsResponse;
 import it.univaq.disim.sose.service.FilmDetailsAggregator;
 import it.univaq.disim.sose.service.FilmDetailsAggregatorImplService;
 import it.univaq.disim.sose.util.MessageAsyncHandler;

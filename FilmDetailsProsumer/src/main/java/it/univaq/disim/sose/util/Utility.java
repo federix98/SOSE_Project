@@ -2,13 +2,10 @@ package it.univaq.disim.sose.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
 
 import it.univaq.disim.sose.model.FilmData;
-import it.univaq.disim.sose.model.Review;
-import it.univaq.disim.sose.model.ReviewList;
 
 public class Utility {
 

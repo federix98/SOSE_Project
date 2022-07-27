@@ -5,10 +5,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.json.JSONObject;
 
 import it.univaq.disim.sose.model.RatingData;
-import it.univaq.disim.sose.utils.Utility;
 
 
 public class RatingDataClient {
@@ -27,6 +25,7 @@ public class RatingDataClient {
 				+ "&costumesRating=" + ratingData.getCostumerRating());
 				
 				
+		@SuppressWarnings("unused")
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 		//RatingData objToReturn = new RatingData(new JSONObject(response.readEntity(String.class)));
 		//Utility.consoleLog(objToReturn.toString());

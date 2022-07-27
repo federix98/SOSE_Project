@@ -1,19 +1,5 @@
 package it.univaq.disim.sose.filmdetails.data;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import org.apache.cxf.jaxrs.client.WebClient;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import it.univaq.disim.sose.model.AggregatedRatingData;
-import it.univaq.disim.sose.model.RatingData;
-import it.univaq.disim.sose.model.Review;
-import it.univaq.disim.sose.model.ReviewList;
 import it.univaq.disim.sose.service.FilmDetailsAggregator;
 import it.univaq.disim.sose.service.FilmDetailsAggregatorImplService;
 
