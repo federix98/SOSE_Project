@@ -1,0 +1,23 @@
+{
+	"resourcePackages": ["it.univaq.disim.sose"],
+	"prettyPrint": true,
+	"cacheTTL": 0,
+	"openAPI": {
+		"info": {
+			"version": "1.0.0",
+			"title": "AuthService",
+			"description": "This service is responsible to handle the authentication of the user",
+			"contact": {"email": "cxf-dev@apache.org"},
+			"license": {
+				"name": "Apache 2.0",
+				"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+			}
+		},
+		"servers": [
+			{
+				"url": "http://localhost:8080/openapi-configuration.json/rest"
+			}
+		]
+	},
+	"userDefinedOptions": {"support.swagger.ui": true}
+}
