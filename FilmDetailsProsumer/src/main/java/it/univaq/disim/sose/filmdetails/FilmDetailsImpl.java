@@ -14,7 +14,7 @@ import it.univaq.disim.sose.util.Utility;
 public class FilmDetailsImpl implements FilmDetails {
 
 	@Override
-	public FilmData getFilmDetails(String filmId) throws Exception{
+	public FilmData getFilmDetails(String filmId) throws Exception {
 		// TODO Auto-generated method stub
 		
 		// Chiama realmente IMDB Api
@@ -39,9 +39,8 @@ public class FilmDetailsImpl implements FilmDetails {
 		Future<?> response = port.aggregateRatingsAsync(filmId, messageAsyncHandler);
 		
 		while (!response.isDone()) {
+			
 			Utility.consoleLog("Still waiting for aggregateRatingsAsync");
-			
-			
 			
 			if (!othersDone) {
 				filmData = IMDBRestClient.getFilmData(filmId);
